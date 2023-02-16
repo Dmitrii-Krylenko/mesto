@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <script src="./scripts/index.js" defer></script>
+  <title>Место</title>
+</head>
+
+<body class="body">
+  <header class="header">
+    <img class="header__logo" src="./images/header-logo.svg" alt="логотип">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__info">
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+        <div class="profile__text">
+          <div class="profile__name-button">
+            <p class="profile__name"></p>
+            <button class="profile__edit"></button>
+          </div>
+          <p class="profile__occupation"></p>
+        </div>
+      </div>
+      <button class="profile__add"></button>
+    </section>
+    <section class="foto">
+      <ul class="elements">
+      <li class="elements__card">
+        <img class="elements__image" src="./images/karachaevsk.jpg" alt="карачаевск">
+        <p class="elements__text">Карачаевск</p>
+      </li>
+      <li class="elements__card">
+        <img class="elements__image" src="./images/elbrus.jpg" alt="Эльбрус">
+        <p class="elements__text">Гора Эльбрус</p>
+      </li>
+      <li class="elements__card">
+        <img class="elements__image" src="./images/karachaevsk.jpg" alt="Домбай">
+        <p class="elements__text">Домбай</p>
+      </li>
+      <li class="elements__card">
+        <img class="elements__image" src="./images/elbrus.jpg" alt="Эльбрус">
+        <p class="elements__text">Гора Эльбрус</p>
+      </li>
+      <li class="elements__card">
+        <img class="elements__image" src="./images/karachaevsk.jpg" alt="Домбай">
+        <p class="elements__text">Домбай</p>
+      </li>
+      <li class="elements__card">
+        <img class="elements__image" src="./images/karachaevsk.jpg" alt="карачаевск">
+        <p class="elements__text">Карачаево-Черкесия</p>
+      </li>
+    </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">&copy; 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup-edit popup-edit_display-none">
+    <div class="popup-edit__form-button">
+      <h2 class="form__header">Редактировать профиль</h2>
+      <form class="popup__form">
+        <input class="form__name form__input" value="">
+        <input class="form__occupation form__input" value="">
+        <button class="form__save">Сохранить</button>
+      </form>
+      <button class="popup-edit__close">
+      </button>
+    </div>
+  </div>
+</body>
+</html>
