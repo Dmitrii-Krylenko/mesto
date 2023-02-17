@@ -8,10 +8,11 @@
     border: 1px solid #FFFFFF;
     padding: 0;
     margin-left: 25px;
+    transition: 0.5s;
+    background-color: transparent;
 }
 
 .profile__edit:hover {
-    transition: 0.5s;
     opacity: 0.6;
 }
 
@@ -19,5 +20,6 @@
     .profile__edit {
         width: 18px;
         height: 18px;
+        background-size: 7.5px 7.5px;
     }
 }
