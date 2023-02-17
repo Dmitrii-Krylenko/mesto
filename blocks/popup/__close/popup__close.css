@@ -1,4 +1,4 @@
-.popup-edit__close {
+.popup__close {
     background: url('../../../images/Close_Icon.svg');
     padding: 0;
     width: 32px;
@@ -9,13 +9,13 @@
     background-size: cover;
 }
 
-.popup-edit__close:hover {
+.popup__close:hover {
     transition: 0.5s;
     opacity: 0.6;
 }
 
 @media screen and (max-width: 560px) {
-    .popup-edit__close {
+    .popup__close {
         width: 20px;
         height: 20px;
         top: -50px;

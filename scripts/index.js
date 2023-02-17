@@ -1,14 +1,14 @@
 let editProfile = document.querySelector('.profile__edit');
-let editPopup = document.querySelector('.popup-edit_display-none');
+let editPopup = document.querySelector('.popup_display-none');
 function open () {
-    editPopup.classList.remove('popup-edit_display-none');
+    editPopup.classList.remove('popup_display-none');
 }
 function close () {
-    editPopup.classList.add('popup-edit_display-none');
+    editPopup.classList.add('popup_display-none');
 }
 editProfile.addEventListener('click', open);
 
-let closePopup = document.querySelector('.popup-edit__close ');
+let closePopup = document.querySelector('.popup__close ');
 closePopup.addEventListener('click', close);
 
 let userName = 'Жак-Ив Кусто';

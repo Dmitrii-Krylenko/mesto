@@ -10,6 +10,7 @@
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis;
+    max-width: 336px;
 }
 
 @media screen and (max-width: 650px) {
@@ -17,6 +18,7 @@
         font-size: 14px;
         line-height: 17px;
         padding-top: 14px;
+        max-width: 280px;
     }
 }
 

@@ -1,4 +1,4 @@
-.popup-edit__form-button {
+.popup__form-button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 560px) {
-    .popup-edit__form-button {
+    .popup__form-button {
         max-width: 282px;
         height: 322px;
     }
