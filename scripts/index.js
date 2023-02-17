@@ -16,8 +16,8 @@ let userOccupation = 'Исследователь океана';
 
 let nameWrite = document.querySelector('.profile__name');
 let occupationWrite = document.querySelector('.profile__occupation');
-let nameValue = document.querySelector('.form__name');
-let occupationValue = document.querySelector('.form__occupation');
+let nameValue = document.querySelector('.popup__input_name');
+let occupationValue = document.querySelector('.popup__input_occupation');
 nameWrite.textContent = userName;
 nameValue.value = userName;
 occupationValue.value = userOccupation;
