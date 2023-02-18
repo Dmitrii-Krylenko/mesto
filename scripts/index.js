@@ -5,7 +5,6 @@ function open() {
     nameValue.value = nameWrite.textContent;
     occupationValue.value = occupationWrite.textContent;
 }
-console.log(open)
 function close() {
     editPopup.classList.remove('popup_opened');
 }
