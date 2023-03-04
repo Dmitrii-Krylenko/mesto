@@ -3,7 +3,7 @@ const addFoto = document.querySelector('.profile__add')
 const editPopup = document.querySelector('.popup');
 const addPopup = document.querySelector('.popup_add');
 const openPhotoBig = document.querySelector('.popup_photo_big');
-const photoBigSrcAlt = document.querySelector('.elements__image_big');
+const photoBigSrcAlt = document.querySelector('.popup__image-big');
 const photoBigTitle = document.querySelector('.popup__header_big');
 
 function open() {
