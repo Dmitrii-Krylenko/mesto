@@ -28,14 +28,17 @@
     </section>
     <section class="foto">
       <ul class="elements">
-        <li class="elements__card">
-          <img class="elements__image" src="./images/karachaevsk.jpg" alt="карачаевск">
-          <div class="elements__text-like">
-            <h2 class="elements__text">Карачаевск</h2>
-            <button type="button" class="elements__like"></button>
-          </div>
-        </li>
-        <li class="elements__card">
+        <template id="templateCard">
+          <li class="elements__card">
+            <button type="button" class="elements__trash"></button>
+            <img class="elements__image" alt="">
+            <div class="elements__text-like">
+              <h2 class="elements__text"></h2>
+              <button type="button" class="elements__like"></button>
+            </div>
+          </li>
+        </template>
+        <!-- <li class="elements__card"> 
           <img class="elements__image" src="./images/elbrus.jpg" alt="Эльбрус">
           <div class="elements__text-like">
             <h2 class="elements__text">Гора Эльбрус</h2>
@@ -69,7 +72,7 @@
             <h2 class="elements__text">Карачаево-Черкесия</h2>
             <button type="button" class="elements__like"></button>
           </div>
-        </li>
+        </li> -->
       </ul>
     </section>
   </main>
@@ -81,13 +84,35 @@
       <h2 class="popup__header">Редактировать профиль</h2>
       <form class="popup__form">
         <input class="popup__input popup__input_inter_name" value="" placeholder="Введите имя" name="Name">
-        <input class="popup__input popup__input_inter_occupation" value="" placeholder="Веведите род занятий" name="Occupation">
+        <input class="popup__input popup__input_inter_occupation" value="" placeholder="Веведите род занятий"
+          name="Occupation">
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
       <button type="button" class="popup__close">
       </button>
     </div>
   </div>
+  <div class="popup popup_add">
+    <div class="popup__container">
+      <h2 class="popup__header">Новое место</h2>
+      <form class="popup__form popup__form-add">
+        <input class="popup__input popup__input_inter_title" value="" placeholder="название" name="Name">
+        <input class="popup__input popup__input_inter_link" value="" placeholder="Ссылка на картинку" name="Occupation">
+        <button type="submit" class="popup__save popup__save-add">Создать</button>
+      </form>
+      <button type="button" class="popup__close popup__close_foto">
+      </button>
+    </div>
+  </div>
+  <div class="popup popup_photo_big">
+    <div class="popup__container popup__container_big">
+      <img class="elements__image elements__image_big" alt="">
+      <h2 class="popup__header popup__header_big"></h2>
+      <button type="button" class="popup__close popup__close_photo_big">
+      </button>
+    </div>
+  </div>
+  <script src="./scripts/constans.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </body>
 
