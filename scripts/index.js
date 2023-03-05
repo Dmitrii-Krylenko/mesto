@@ -2,26 +2,30 @@ const editProfile = document.querySelector('.profile__edit');
 const addFoto = document.querySelector('.profile__add')
 const editPopup = document.querySelector('.popup');
 const addPopup = document.querySelector('.popup_add');
-const openPhotoBig = document.querySelector('.popup_photo_big');
-const photoBigSrcAlt = document.querySelector('.popup__image-big');
-const photoBigTitle = document.querySelector('.popup__header_big');
+const openImage = document.querySelector('.popup_photo_big');
+const photoAttribute = document.querySelector('.popup__image-big');
+const photoTitle = document.querySelector('.popup__header_big');
+
+const openPopup = (popupElement)=> {
+  popupElement.classList.add('popup_opened');
+};
 
 function open() {
-  editPopup.classList.add('popup_opened');
+  openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
 }
 function openAdd() {
-  addPopup.classList.add('popup_opened');
+  openPopup(addPopup);
 }
 function openPhoto(evt) {
-  photoBigSrcAlt.src = evt.target.src;
-  photoBigSrcAlt.alt = evt.target.alt;
-  photoBigTitle.textContent = evt.target.alt;
-  openPhotoBig.classList.add('popup_opened');
+  photoAttribute.src = evt.target.src;
+  photoAttribute.alt = evt.target.alt;
+  photoTitle.textContent = evt.target.alt;
+  openPopup(openImage);
 }
 function closePhotoBig() {
-  openPhotoBig.classList.remove('popup_opened');
+  openImage.classList.remove('popup_opened');
 }
 function close() {
   editPopup.classList.remove('popup_opened');
@@ -46,14 +50,14 @@ const savePopupAdd = document.querySelector('.popup__save-add');
 
 const formElement = document.querySelector('.popup__form');
 
-function handleFormSubmit(evt) {
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   nameWrite.textContent = nameValue.value;
   occupationWrite.textContent = occupationValue.value;
   close();
 }
 
-formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleEditProfileFormSubmit);
 
 
 function likePhoto(evt) {
@@ -66,7 +70,8 @@ function deletePhoto(evt) {
 const photoPlace = document.querySelector('.elements');
 
 function createNewCard(card) {
-  const elementCard = document.querySelector('#templateCard').content.cloneNode(true);
+  const elementCard = document.querySelector('#templateCard')
+    .content.querySelector('.elements__card').cloneNode(true);
   const elementText = elementCard.querySelector('.elements__text');
   elementText.textContent = card.name;
   const elementsImage = elementCard.querySelector('.elements__image');
@@ -78,22 +83,25 @@ function createNewCard(card) {
   deleteCard.addEventListener('click', deletePhoto);
   const imageButton = elementCard.querySelector('.elements__image');
   imageButton.addEventListener('click', openPhoto);
-  photoPlace.prepend(elementCard);
+  return elementCard;
 }
 
-
-initialCards.forEach(createNewCard);
-
+const addCardDom = (item)=> {
+  const element = createNewCard(item);
+  photoPlace.prepend(element);
+};
+initialCards.forEach(addCardDom);
 addPopup.addEventListener('submit', createElementSubmit);
+
+const nameElement = document.querySelector('.popup__input_inter_title');
+const imageElement = document.querySelector('.popup__input_inter_link');
+
 function createElementSubmit(evt) {
   evt.preventDefault();
-  const formElement = evt.target;
-  const nameElement = formElement.querySelector('.popup__input_inter_title').value;
-  const imageElement = formElement.querySelector('.popup__input_inter_link').value;
   const newElement = {
-    name: nameElement,
-    link: imageElement
+    name: nameElement.value,
+    link: imageElement.value
   }
-  createNewCard(newElement);
+  addCardDom(newElement);
   closeAdd();
 }
