@@ -9,8 +9,11 @@ const photoTitle = document.querySelector('.popup__header_big');
 const openPopup = (popupElement)=> {
   popupElement.classList.add('popup_opened');
 };
+const closePopup = (popupElement)=> {
+  popupElement.classList.remove('popup_opened');
+};
 
-function open() {
+function openEditProfile() {
   openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
@@ -25,28 +28,27 @@ function openPhoto(evt) {
   openPopup(openImage);
 }
 function closePhotoBig() {
-  openImage.classList.remove('popup_opened');
+  closePopup(openImage);
 }
-function close() {
-  editPopup.classList.remove('popup_opened');
+function closeEditProfile() {
+  closePopup(editPopup);
 }
 function closeAdd() {
-  addPopup.classList.remove('popup_opened');
+  closePopup(addPopup);
 }
-editProfile.addEventListener('click', open);
+editProfile.addEventListener('click', openEditProfile);
 addFoto.addEventListener('click', openAdd);
 
-const closePopup = document.querySelector('.popup__close');
-const closePopupFoto = document.querySelector('.popup__close_foto');
+const buttonClose = document.querySelector('.popup__close');
+const buttonCloseFoto = document.querySelector('.popup__close_foto');
 const closePhoto = document.querySelector('.popup__close_photo_big');
-closePopup.addEventListener('click', close);
-closePopupFoto.addEventListener('click', closeAdd);
+buttonClose.addEventListener('click', closeEditProfile);
+buttonCloseFoto.addEventListener('click', closeAdd);
 closePhoto.addEventListener('click', closePhotoBig);
 const nameWrite = document.querySelector('.profile__name');
 const occupationWrite = document.querySelector('.profile__occupation');
 const nameValue = document.querySelector('.popup__input_inter_name');
 const occupationValue = document.querySelector('.popup__input_inter_occupation');
-const savePopupAdd = document.querySelector('.popup__save-add');
 
 const formElement = document.querySelector('.popup__form');
 
@@ -54,7 +56,7 @@ function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   nameWrite.textContent = nameValue.value;
   occupationWrite.textContent = occupationValue.value;
-  close();
+  closeEditProfile();
 }
 
 formElement.addEventListener('submit', handleEditProfileFormSubmit);
