@@ -6,10 +6,10 @@ const openImage = document.querySelector('.popup_photo_big');
 const photoAttribute = document.querySelector('.popup__image-big');
 const photoTitle = document.querySelector('.popup__header_big');
 
-const openPopup = (popupElement)=> {
+const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
 };
-const closePopup = (popupElement)=> {
+const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_opened');
 };
 
@@ -88,7 +88,7 @@ function createNewCard(card) {
   return elementCard;
 }
 
-const addCardDom = (item)=> {
+const addCardDom = (item) => {
   const element = createNewCard(item);
   photoPlace.prepend(element);
 };
@@ -106,4 +106,6 @@ function createElementSubmit(evt) {
   }
   addCardDom(newElement);
   closeAdd();
+  nameElement.value = '';
+  imageElement.value = '';
 }
