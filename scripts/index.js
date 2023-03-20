@@ -12,10 +12,13 @@ const imageElement = document.querySelector('.popup__input_inter_link');
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEscape)
+  popupElement.addEventListener('click', closePopupOverlay)
+
 };
 const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_opened');
-  document.addEventListener('keydown', closePopupEscape)
+  document.addEventListener('keydown', closePopupEscape);
+  popupElement.addEventListener('click', closePopupOverlay)
 };
 
 const closePopupEscape = (evt) =>{
@@ -23,7 +26,13 @@ const closePopupEscape = (evt) =>{
       const popupOpenned = document.querySelector('.popup_opened');
       closePopup(popupOpenned);
     }
- 
+}
+
+const closePopupOverlay = (evt) =>{
+  if (evt.target === evt.currentTarget) {
+    const popupOpenned = document.querySelector('.popup_opened');
+    closePopup(popupOpenned);
+  }
 }
 
 function openEditProfile() {
