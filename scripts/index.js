@@ -1,4 +1,5 @@
 const editProfile = document.querySelector('.profile__edit');
+// FIXME: photo
 const addFoto = document.querySelector('.profile__add')
 const editPopup = document.querySelector('.popup');
 const addPopup = document.querySelector('.popup_add');
@@ -10,20 +11,38 @@ const imageElement = document.querySelector('.popup__input_inter_link');
 
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape)
 };
 const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_opened');
+  document.addEventListener('keydown', closePopupEscape)
 };
+
+const closePopupEscape = (evt) =>{
+    if (evt.key === 'Escape') {
+      const popupOpenned = document.querySelector('.popup_opened');
+      closePopup(popupOpenned);
+    }
+ 
+}
 
 function openEditProfile() {
   openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
+  const form = document.querySelector('.popup__form_edit-profile');
+  const button = form.querySelector('.popup__save');
+  const inputList = form.querySelectorAll('.popup__input');
+  toggleButtonState(button, inputList)
 }
 function openAdd() {
   openPopup(addPopup);
   nameElement.value = '';
   imageElement.value = '';
+  const form = document.querySelector('.popup__form-add');
+  const button = form.querySelector('.popup__save');
+  const inputList = form.querySelectorAll('.popup__input');
+  toggleButtonState(button, inputList)
 }
 
 function openPhoto(evt) {
