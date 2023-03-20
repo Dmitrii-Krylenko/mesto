@@ -5,6 +5,8 @@ const addPopup = document.querySelector('.popup_add');
 const openImage = document.querySelector('.popup_photo_big');
 const photoAttribute = document.querySelector('.popup__image-big');
 const photoTitle = document.querySelector('.popup__header_big');
+const nameElement = document.querySelector('.popup__input_inter_title');
+const imageElement = document.querySelector('.popup__input_inter_link');
 
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
@@ -20,7 +22,10 @@ function openEditProfile() {
 }
 function openAdd() {
   openPopup(addPopup);
+  nameElement.value = '';
+  imageElement.value = '';
 }
+
 function openPhoto(evt) {
   photoAttribute.src = evt.target.src;
   photoAttribute.alt = evt.target.alt;
@@ -36,6 +41,7 @@ function closeEditProfile() {
 function closeAdd() {
   closePopup(addPopup);
 }
+  
 editProfile.addEventListener('click', openEditProfile);
 addFoto.addEventListener('click', openAdd);
 
@@ -45,6 +51,9 @@ const closePhoto = document.querySelector('.popup__close_photo_big');
 buttonClose.addEventListener('click', closeEditProfile);
 buttonCloseFoto.addEventListener('click', closeAdd);
 closePhoto.addEventListener('click', closePhotoBig);
+
+
+
 const nameWrite = document.querySelector('.profile__name');
 const occupationWrite = document.querySelector('.profile__occupation');
 const nameValue = document.querySelector('.popup__input_inter_name');
@@ -94,9 +103,6 @@ const addCardDom = (item) => {
 };
 initialCards.forEach(addCardDom);
 addPopup.addEventListener('submit', createElementSubmit);
-
-const nameElement = document.querySelector('.popup__input_inter_title');
-const imageElement = document.querySelector('.popup__input_inter_link');
 
 function createElementSubmit(evt) {
   evt.preventDefault();
