@@ -39,19 +39,20 @@ function openEditProfile() {
   openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
-  // const form = document.querySelector('.popup__form_edit-profile');
-  // const button = form.querySelector('.popup__save');
-  // const inputList = form.querySelectorAll('.popup__input');
-  // toggleButtonState(button, inputList)
+  const form = document.querySelector('.popup__form_edit-profile');
+  const button = form.querySelector('.popup__save');
+  const inputList = form.querySelectorAll('.popup__input');
+  toggleButtonState(button, inputList)
 }
-function openAdd() {
+function openAdd(config) {
   openPopup(addPopup);
   nameElement.value = '';
   imageElement.value = '';
-  // const form = document.querySelector('.popup__form-add');
-  // const button = form.querySelector('.popup__save');
-  // const inputList = form.querySelectorAll('.popup__input');
-  // toggleButtonState(button, inputList)
+  const form = document.querySelector('.popup__form-add');
+  const button = form.querySelector('.popup__save');
+  const inputList = form.querySelectorAll('.popup__input');
+
+  toggleButtonState(button, inputList, config)
 }
 
 function openPhoto(evt) {
@@ -71,7 +72,7 @@ function closeAdd() {
 }
   
 editProfile.addEventListener('click', openEditProfile);
-addFoto.addEventListener('click', openAdd);
+addFoto.addEventListener('click', openAdd(config));
 
 const buttonClose = document.querySelector('.popup__close');
 const buttonCloseFoto = document.querySelector('.popup__close_foto');
