@@ -39,19 +39,19 @@ function openEditProfile() {
   openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
-  const form = document.querySelector('.popup__form_edit-profile');
-  const button = form.querySelector('.popup__save');
-  const inputList = form.querySelectorAll('.popup__input');
-  toggleButtonState(button, inputList)
+  // const form = document.querySelector('.popup__form_edit-profile');
+  // const button = form.querySelector('.popup__save');
+  // const inputList = form.querySelectorAll('.popup__input');
+  // toggleButtonState(button, inputList)
 }
 function openAdd() {
   openPopup(addPopup);
   nameElement.value = '';
   imageElement.value = '';
-  const form = document.querySelector('.popup__form-add');
-  const button = form.querySelector('.popup__save');
-  const inputList = form.querySelectorAll('.popup__input');
-  toggleButtonState(button, inputList)
+  // const form = document.querySelector('.popup__form-add');
+  // const button = form.querySelector('.popup__save');
+  // const inputList = form.querySelectorAll('.popup__input');
+  // toggleButtonState(button, inputList)
 }
 
 function openPhoto(evt) {
