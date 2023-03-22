@@ -10,6 +10,12 @@ const imageElement = document.querySelector('.popup__input_inter_link');
 const buttonClose = document.querySelector('.popup__close');
 const buttonClosePhoto = document.querySelector('.popup__close_foto');
 const closePhoto = document.querySelector('.popup__close_photo_big');
+const formEditProfile = document.querySelector('.popup__form_edit-profile');
+const buttonEditProfile = formEditProfile.querySelector('.popup__save');
+const inputListEditProfile = formEditProfile.querySelectorAll('.popup__input');
+const formAdd = document.querySelector('.popup__form_edit-profile');
+const buttonAdd = formAdd.querySelector('.popup__save');
+const inputListAdd = formAdd.querySelectorAll('.popup__input');
 
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
@@ -19,8 +25,8 @@ const openPopup = (popupElement) => {
 };
 const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_opened');
-  document.addEventListener('keydown', closePopupEscape);
-  popupElement.addEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEscape);
+  popupElement.removeEventListener('click', closePopupOverlay);
 };
 
 const closePopupEscape = (evt) =>{
@@ -32,8 +38,7 @@ const closePopupEscape = (evt) =>{
 
 const closePopupOverlay = (evt) =>{
   if (evt.target === evt.currentTarget) {
-    const popupOpenned = document.querySelector('.popup_opened');
-    closePopup(popupOpenned);
+    closePopup(evt.target);
   }
 }
 
@@ -41,20 +46,13 @@ function openEditProfile() {
   openPopup(editPopup);
   nameValue.value = nameWrite.textContent;
   occupationValue.value = occupationWrite.textContent;
-  const form = document.querySelector('.popup__form_edit-profile');
-  const button = form.querySelector('.popup__save');
-  const inputList = form.querySelectorAll('.popup__input');
-  toggleButtonState(button, inputList)
+  toggleButtonState(buttonEditProfile, inputListEditProfile)
 }
 const openAdd = (config) => {
   openPopup(addPopup);
   nameElement.value = '';
   imageElement.value = '';
-  const form = document.querySelector('.popup__form-add');
-  const button = form.querySelector('.popup__save');
-  const inputList = form.querySelectorAll('.popup__input');
-
-  toggleButtonState(button, inputList, config.activeButtonClass);
+  toggleButtonState(buttonAdd, inputListAdd, config.activeButtonClass);
 }
 
 function openPhoto(evt) {
