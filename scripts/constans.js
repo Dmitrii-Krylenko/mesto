@@ -30,8 +30,8 @@ const formValidationConfig =
 {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  errorClassTemplate: '.popup__input_error-',
-  activeErrorClass: 'popup__input_error',
+  errorClassTemplate: '.popup__input-error_type_',
+  activeErrorClass: 'popup__input-error',
   activeButtonClass: 'popup__save_none-active',
   activeErrorClassBoarder: 'popup__input_boarder',
   submitButtonSeletor: '.popup__button'
