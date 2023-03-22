@@ -1,6 +1,5 @@
 const editProfile = document.querySelector('.profile__edit');
-// FIXME: photo
-const addFoto = document.querySelector('.profile__add')
+const addPhoto = document.querySelector('.profile__add')
 const editPopup = document.querySelector('.popup');
 const addPopup = document.querySelector('.popup_add');
 const openImage = document.querySelector('.popup_photo_big');
@@ -8,17 +7,20 @@ const photoAttribute = document.querySelector('.popup__image-big');
 const photoTitle = document.querySelector('.popup__header_big');
 const nameElement = document.querySelector('.popup__input_inter_title');
 const imageElement = document.querySelector('.popup__input_inter_link');
+const buttonClose = document.querySelector('.popup__close');
+const buttonClosePhoto = document.querySelector('.popup__close_foto');
+const closePhoto = document.querySelector('.popup__close_photo_big');
 
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEscape)
-  popupElement.addEventListener('click', closePopupOverlay)
+  document.addEventListener('keydown', closePopupEscape);
+  popupElement.addEventListener('click', closePopupOverlay);
 
 };
 const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_opened');
   document.addEventListener('keydown', closePopupEscape);
-  popupElement.addEventListener('click', closePopupOverlay)
+  popupElement.addEventListener('click', closePopupOverlay);
 };
 
 const closePopupEscape = (evt) =>{
@@ -44,7 +46,7 @@ function openEditProfile() {
   const inputList = form.querySelectorAll('.popup__input');
   toggleButtonState(button, inputList)
 }
-function openAdd(config) {
+const openAdd = (config) => {
   openPopup(addPopup);
   nameElement.value = '';
   imageElement.value = '';
@@ -52,7 +54,7 @@ function openAdd(config) {
   const button = form.querySelector('.popup__save');
   const inputList = form.querySelectorAll('.popup__input');
 
-  toggleButtonState(button, inputList, config)
+  toggleButtonState(button, inputList, config.activeButtonClass);
 }
 
 function openPhoto(evt) {
@@ -71,14 +73,16 @@ function closeAdd() {
   closePopup(addPopup);
 }
   
-editProfile.addEventListener('click', openEditProfile);
-addFoto.addEventListener('click', openAdd(config));
+editProfile.addEventListener('click', () => {
+  openEditProfile(formValidationConfig);
+});
 
-const buttonClose = document.querySelector('.popup__close');
-const buttonCloseFoto = document.querySelector('.popup__close_foto');
-const closePhoto = document.querySelector('.popup__close_photo_big');
+addPhoto.addEventListener('click', () => {
+  openAdd(formValidationConfig);
+});
+
 buttonClose.addEventListener('click', closeEditProfile);
-buttonCloseFoto.addEventListener('click', closeAdd);
+buttonClosePhoto.addEventListener('click', closeAdd);
 closePhoto.addEventListener('click', closePhotoBig);
 
 
@@ -90,14 +94,14 @@ const occupationValue = document.querySelector('.popup__input_inter_occupation')
 
 const formElement = document.querySelector('.popup__form');
 
-function handleEditProfileFormSubmit(evt) {
+function editProfileFormSubmitHandler(evt) {
   evt.preventDefault();
   nameWrite.textContent = nameValue.value;
   occupationWrite.textContent = occupationValue.value;
   closeEditProfile();
 }
 
-formElement.addEventListener('submit', handleEditProfileFormSubmit);
+formElement.addEventListener('submit', editProfileFormSubmitHandler);
 
 
 function likePhoto(evt) {
