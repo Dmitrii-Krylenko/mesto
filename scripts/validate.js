@@ -91,7 +91,7 @@ class Validate {
     _hideInputError(input, validationMessage) {
         const errorTextElement = this._form.querySelector(`${this._config.errorClassTemplate}${input.name}`);
         errorTextElement.textContent = validationMessage
-        errorTextElement.classList.remove(this._config.activeErrorClass);
+        // errorTextElement.classList.remove(this._config.activeErrorClass);
         input.classList.remove(this._config.activeErrorClassBoarder);
     }
 

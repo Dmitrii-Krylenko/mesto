@@ -2,14 +2,14 @@ import Card from "./card.js";
 import Validate from "./validate.js";
 const editProfile = document.querySelector('.profile__edit');
 const addPhoto = document.querySelector('.profile__add')
-const editPopup = document.querySelector('.popup');
+const editPopup = document.querySelector('.popup_edit-profil');
 const addPopup = document.querySelector('.popup_add');
 const openImage = document.querySelector('.popup_photo_big');
 const photoAttribute = document.querySelector('.popup__image-big');
 const photoTitle = document.querySelector('.popup__header_big');
 const nameElement = document.querySelector('.popup__input_inter_title');
 const imageElement = document.querySelector('.popup__input_inter_link');
-const buttonClose = document.querySelector('.popup__close');
+const buttonClose = document.querySelector('#buttonClose');
 const buttonClosePhoto = document.querySelector('.popup__close_foto');
 const closePhoto = document.querySelector('.popup__close_photo_big');
 // const formEditProfile = document.querySelector('.popup__form_edit-profile');
@@ -86,11 +86,11 @@ function closeAdd() {
 }
 
 editProfile.addEventListener('click', () => {
-  openEditProfile(formValidationConfig);
+  openEditProfile();
 });
 
 addPhoto.addEventListener('click', () => {
-  openAdd(formValidationConfig);
+  openAdd();
 });
 
 buttonClose.addEventListener('click', closeEditProfile);
@@ -104,7 +104,7 @@ const occupationWrite = document.querySelector('.profile__occupation');
 const nameValue = document.querySelector('.popup__input_inter_name');
 const occupationValue = document.querySelector('.popup__input_inter_occupation');
 
-const formElement = document.querySelector('.popup__form');
+const formElement = document.querySelector('.popup__form_edit-profile');
 
 function editProfileFormSubmitHandler(evt) {
   evt.preventDefault();
@@ -145,12 +145,25 @@ formElement.addEventListener('submit', editProfileFormSubmitHandler);
 //   const element = createNewCard(item);
 //   photoPlace.prepend(element);
 // };
-const addCardDom = (item) => {
+// const addCardDom = (item) => {
+//   const element = new Card(item, '#templateCard', handleOpenPhoto);
+//   photoPlace.prepend(element.getElement());
+// };
+
+const createCard = (item) => {
   const element = new Card(item, '#templateCard', handleOpenPhoto);
-  photoPlace.prepend(element.getElement());
+return element.getElement()
 };
 
-initialCards.forEach(addCardDom);
+const addCardDom = (item) => {
+  photoPlace.prepend(item);
+  
+}
+
+initialCards.forEach((newElement)=>{
+  addCardDom(createCard(newElement));
+
+});
 addPopup.addEventListener('submit', createElementSubmit);
 
 function createElementSubmit(evt) {
@@ -159,11 +172,13 @@ function createElementSubmit(evt) {
     name: nameElement.value,
     link: imageElement.value
   }
-  addCardDom(newElement);
+  addCardDom(createCard(newElement));
   closeAdd();
   nameElement.value = '';
   imageElement.value = '';
 }
+
+
 
 const validatorElemet = new Validate(formElement, formValidationConfig);
 validatorElemet.enableValidation();

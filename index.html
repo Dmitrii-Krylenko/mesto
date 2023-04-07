@@ -82,7 +82,7 @@
   <div class="popup popup_edit-profil">
     <div class="popup__container">
       <h2 class="popup__header">Редактировать профиль</h2>
-      <form class="popup__form popup__form_edit-profile">
+      <form class="popup__form popup__form_edit-profile" novalidate>
         <input class="popup__input  popup__input_inter_name" value="" placeholder="Введите имя" name="name" type="text"
           minlength="2" maxlength="40" required>
         <span class="popup__input-error popup__input-error_type_name"></span>
@@ -91,14 +91,14 @@
         <span class="popup__input-error popup__input-error_type_occupation"></span>
         <button type="submit" class="popup__save popup__button">Сохранить</button>
       </form>
-      <button type="button" class="popup__close">
+      <button type="button" class="popup__close" id="buttonClose">
       </button>
     </div>
   </div>
   <div class="popup popup_add">
     <div class="popup__container">
       <h2 class="popup__header">Новое место</h2>
-      <form class="popup__form popup__form-add">
+      <form class="popup__form popup__form-add" novalidate>
         <input class="popup__input popup__input_inter_title" value="" placeholder="название" name="text" type="text"
           minlength="2" maxlength="30" required>
         <span class="popup__input-error popup__input-error_type_text"></span>
