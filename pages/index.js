@@ -1,3 +1,4 @@
+import './index.css'
 import { formValidationConfig, initialCards } from "../src/components/constans.js";
 import Card from "../src/components/card.js";
 import Section from "../src/components/Section.js";

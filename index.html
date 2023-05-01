@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Место</title>
 </head>
 
 <body class="body">
   <header class="header">
-    <img class="header__logo" src="./images/header-logo.svg" alt="логотип">
+    <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="логотип">
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
         <div class="profile__text">
           <div class="profile__name-button">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
