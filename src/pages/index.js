@@ -1,11 +1,11 @@
 import './index.css'
-import { formValidationConfig, initialCards } from "../src/components/constans.js";
-import Card from "../src/components/card.js";
-import Section from "../src/components/Section.js";
-import Validate from "../src/components/validate.js";
-import PopupWithImage from "../src/components/PopupWithImage.js";
-import PopupWithForm from "../src/components/PopupWithForm.js";
-import UserInfo from "../src/components/UserInfo.js";
+import { formValidationConfig, initialCards } from "../components/constans.js";
+import Card from "../components/card.js";
+import Section from "../components/Section.js";
+import Validate from "../components/validate.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 const editProfile = document.querySelector('.profile__edit');
 const addPhoto = document.querySelector('.profile__add')
 const addPopup = document.querySelector('.popup_add');
