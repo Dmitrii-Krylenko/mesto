@@ -3,14 +3,14 @@ export default class Popup {
     constructor(selector) {
         this._popupElement = document.querySelector(selector);
         this._closePhoto = this._popupElement.querySelector('.popup__close');
+        this._handleEscClose = this._handleEscClose.bind(this) // без bind не работает
+
     }
 
 
     open() {
         this._popupElement.classList.add('popup_opened')
-        this._handleEscClose = this._handleEscClose.bind(this)
         document.addEventListener('keydown', this._handleEscClose);
-        this.setEventListeners();
     }
 
 

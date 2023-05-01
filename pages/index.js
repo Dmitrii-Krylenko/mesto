@@ -15,11 +15,18 @@ const occupationValue = document.querySelector('.popup__input_inter_occupation')
 
 const formElement = document.querySelector('.popup__form_edit-profile');
 
+const validatorElemet = new Validate(formElement, formValidationConfig);
+validatorElemet.enableValidation();
+
+const validatorAdd = new Validate(addPopup, formValidationConfig);
+validatorAdd.enableValidation();
+const popupWithImage = new PopupWithImage('.popup_photo_big')
+popupWithImage.setEventListeners()
 
 const createCard = (item) => {
   const element = new Card(item, '#templateCard', (name, link) => {
-    const popupWithImage = new PopupWithImage('.popup_photo_big', name, link)
-    popupWithImage.open()
+    // const popupWithImage = new PopupWithImage('.popup_photo_big', name, link)
+    popupWithImage.open(name, link) // name, link
   });
   return element.getElement()
 };
@@ -41,6 +48,7 @@ const userInfo = new UserInfo('.profile__name', '.profile__occupation')
 const popupWithFormProfile = new PopupWithForm('.popup_edit-profil', (data) => {
   userInfo.setUserInfo(data);
 })
+popupWithFormProfile.setEventListeners()
 
 editProfile.addEventListener('click', () => {
   const htmlData = userInfo.getUserInfo()
@@ -56,15 +64,12 @@ const popupWithFormAdd = new PopupWithForm('.popup_add', (item) => {
 
 
 })
+popupWithFormAdd.setEventListeners()
 
 addPhoto.addEventListener('click', () => {
+  validatorAdd.disableButton()
   popupWithFormAdd.open()
 })
 
 
 
-const validatorElemet = new Validate(formElement, formValidationConfig);
-validatorElemet.enableValidation();
-
-const validatorAdd = new Validate(addPopup, formValidationConfig);
-validatorAdd.enableValidation();
