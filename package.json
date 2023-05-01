@@ -1,0 +1,17 @@
+{
+  "name": "mesto2",
+  "version": "1.0.0",
+  "description": "[Место](https://dmitrii-krylenko.github.io/mesto/) это проектная работа № 4, в которой делалал адаптивную верстку, через media, и JS\r #### elements \r Блок реализован с помощью grid по аналогии с ПР3\r #### popup\r открытие и закрытие отдельно написаны функции на JS, заполнение форм возвращает их в profile",
+  "main": "./pages/index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
+  }
+}
