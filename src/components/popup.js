@@ -26,12 +26,16 @@ export default class Popup {
     }
 
     setEventListeners() {
+        
         this._popupElement.addEventListener('click', (evt) => {
             if (evt.target === evt.currentTarget) {
+                
                 this.close();
             }
         });
         this._closePhoto.addEventListener('click', this.close.bind(this))
-    }
+       
+        
 
-}
+    }
+} 

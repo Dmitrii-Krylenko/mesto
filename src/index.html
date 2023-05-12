@@ -15,7 +15,9 @@
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
+        <button class="profile__button" type="button">
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
+        </button>
         <div class="profile__text">
           <div class="profile__name-button">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -34,7 +36,10 @@
             <img class="elements__image" alt="">
             <div class="elements__text-like">
               <h2 class="elements__text"></h2>
-              <button type="button" class="elements__like"></button>
+              <div class="elements__likes">
+                <button type="button" class="elements__like"></button>
+                <h2 class="elements__likes-number">7</h2>
+              </div>
             </div>
           </li>
         </template>
@@ -84,7 +89,30 @@
       </button>
     </div>
   </div>
-    <script type="module" src="./pages/index.js" defer></script>
+  <div class="popup popup_avatar">
+    <div class="popup__container">
+      <h2 class="popup__header">Обновить аватар</h2>
+      <form class="popup__form popup__form-add" novalidate>
+        <input class="popup__input popup__input_inter_link" value="" placeholder="Ссылка на картинку" name="link"
+          type="url" required>
+        <span class="popup__input-error popup__input-error_type_link"></span>
+        <button type="submit" class="popup__save popup__save-add popup__button">Сохранить</button>
+      </form>
+      <button type="button" class="popup__close popup__close_foto">
+      </button>
+    </div>
+  </div>
+  <div class="popup popup_delete">
+    <div class="popup__container">
+      <h2 class="popup__header">Вы уверены?</h2>
+      <form class="popup__form popup__form-add" novalidate>
+        <button type="submit" class="popup__save popup__save-add popup__button">Да</button>
+      </form>
+      <button type="button" class="popup__close popup__close_foto ">
+      </button>
+    </div>
+  </div>
+  <script type="module" src="./pages/index.js" defer></script>
 </body>
 
 </html>
