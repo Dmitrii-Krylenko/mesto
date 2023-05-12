@@ -1,5 +1,5 @@
 class Card {
-  constructor(card, templateSelector, handleOpenPhoto, handleDeletePhoto, current_user_id, setLike, deleteLike) {
+  constructor(card, templateSelector, handleOpenPhoto, handleDeletePhoto, currentUserId, setLike, deleteLike) {
     this._link = card.link;
     this._name = card.name;
     this._templateSelector = templateSelector;
@@ -8,7 +8,7 @@ class Card {
     this._owner = card.owner
     this._likeCard = card.likes.length
     this._likes = card.likes
-    this._current_user_id = current_user_id
+    this._currentUserId = currentUserId
     this._card = card
     this._setLike = setLike
     this._deleteLike = deleteLike
@@ -68,7 +68,7 @@ class Card {
     this._likePlace = this._element.querySelector('.elements__likes-number')
     this._likePlace.textContent = this._likeCard
 
-    if (this._owner._id != this._current_user_id) {
+    if (this._owner._id != this._currentUserId) {
       this._deleteCard.classList.add('hidden');
     }
 
@@ -86,7 +86,7 @@ class Card {
 
   _isCurrentUserLiked() {
     const result = this._likes.some((like) => {
-      return like._id === this._current_user_id
+      return like._id === this._currentUserId
     })
     return result;
   }
@@ -98,6 +98,9 @@ class Card {
           this._card = card
           this._likes = card.likes
           this.colorizeLike()
+        }) 
+        .catch((err)=>{
+          console.log(err)
         })
     }
     else {
@@ -106,6 +109,9 @@ class Card {
           this._card = card
           this._likes = card.likes
           this.colorizeLike()
+        })
+        .catch((err)=>{
+          console.log(err)
         })
     }
   }

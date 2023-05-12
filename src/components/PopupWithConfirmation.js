@@ -1,5 +1,5 @@
-import Popup from "./popup";
-import { formValidationConfig } from "./constans.js";
+import Popup from "./Popup";
+import { formValidationConfig } from "../blocks/utils/Constans.js";
 export default class PopupWithConfirmation extends Popup {
     constructor(selector, handleFormSubmit) {
         super(selector);
@@ -12,7 +12,7 @@ export default class PopupWithConfirmation extends Popup {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._handleFormSubmit(this._id, this._cardElement);
-            this.close();
+            // this.close();
         })
     }
 
@@ -22,8 +22,6 @@ export default class PopupWithConfirmation extends Popup {
         super.open();
     }
 
-    close() {
-        super.close();
-    }
+
 }
 

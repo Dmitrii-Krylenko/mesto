@@ -1,5 +1,5 @@
-import Popup from "./popup.js";
-import { formValidationConfig } from "./constans.js";
+import Popup from "./Popup.js";
+import { formValidationConfig } from "../blocks/utils/Constans.js";
 
 export default class PopupWithForm extends Popup {
     constructor(selector, handleFormSubmit) {
@@ -28,7 +28,7 @@ export default class PopupWithForm extends Popup {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._handleFormSubmit(this._getInputValues());
-            this.close();
+            // this.close();
         })
 
     }
@@ -42,7 +42,7 @@ export default class PopupWithForm extends Popup {
             this._saveButton.textContent = 'Сохранение...';
         }
         else {
-            this._saveButtonText;
+            this._saveButton.textContent = this._saveButtonText;
         }
     }
 

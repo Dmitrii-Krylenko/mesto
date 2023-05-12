@@ -4,7 +4,7 @@ export default class Api {
         this._headers =options.headers
     }
 
-__checkResponse (res){
+_checkResponse (res){
     if (res.ok){
       return  res.json() 
     }
@@ -20,7 +20,7 @@ __checkResponse (res){
 
         })
 
-       return this.__checkResponse(response)
+       return this._checkResponse(response)
     }
 
 async getUserInfo(){
@@ -28,7 +28,7 @@ async getUserInfo(){
         headers: this._headers
 
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 }
 
 async editUserInfo (name, about){
@@ -40,7 +40,7 @@ async editUserInfo (name, about){
             about: about
         })
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 }
 async editPhoto (name, link){
     const response = await fetch(`${this._baseUrl}/cards `,{
@@ -51,7 +51,7 @@ async editPhoto (name, link){
             link: link
         })
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 }
 
 async editUserAva (avatar){
@@ -63,7 +63,7 @@ async editUserAva (avatar){
     
         })
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 
 }
 
@@ -72,7 +72,7 @@ async deleteCard (id){
         method: "DELETE",
         headers: this._headers
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 
 }
 
@@ -81,7 +81,7 @@ async setLike (id){
         method: "PUT",
         headers: this._headers
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 
 }
 
@@ -90,7 +90,7 @@ async deleteLike (id){
         method: "DELETE",
         headers: this._headers
     })
-    return this.__checkResponse(response)
+    return this._checkResponse(response)
 
 }
 async toggleLike(id,liked) {

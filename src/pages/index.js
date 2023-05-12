@@ -1,13 +1,13 @@
 import './index.css'
-import { formValidationConfig, initialCards } from "../components/constans.js";
+import { formValidationConfig, initialCards } from "../blocks/utils/Constans.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation';
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
 import Section from "../components/Section.js";
-import Validate from "../components/validate.js";
+import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import Api from '../components/api';
+import Api from '../components/Api.js';
 const editProfile = document.querySelector('.profile__edit');
 const addPhoto = document.querySelector('.profile__add')
 const addPopup = document.querySelector('.popup_add');
@@ -18,15 +18,15 @@ let currnet_user = null;
 
 const nameValue = document.querySelector('.popup__input_inter_name');
 const occupationValue = document.querySelector('.popup__input_inter_occupation');
-const formElement = document.querySelector('.popup__form_edit-profile');
+const profileForm = document.querySelector('.popup__form_edit-profile');
 
-const validatorElemet = new Validate(formElement, formValidationConfig);
+const validatorElemet = new FormValidator(profileForm, formValidationConfig);
 validatorElemet.enableValidation();
 
-const validatorAdd = new Validate(addPopup, formValidationConfig);
+const validatorAdd = new FormValidator(addPopup, formValidationConfig);
 validatorAdd.enableValidation();
 
-const validatorAvatar = new Validate(saveAvatar, formValidationConfig);
+const validatorAvatar = new FormValidator(saveAvatar, formValidationConfig);
 validatorAvatar.enableValidation();
 
 const popupWithImage = new PopupWithImage('.popup_photo_big')
@@ -35,7 +35,11 @@ popupWithImage.setEventListeners()
 const popupWithConfirmation = new PopupWithConfirmation('.popup_delete', (id, element) => {
   api.deleteCard(id).then(() => {
     element.remove();
+    popupWithConfirmation.close()
   })
+    .catch((err) => {
+      console.log(err)
+    })
 })
 popupWithConfirmation.setEventListeners()
 
@@ -71,24 +75,46 @@ const api = new Api({
   }
 })
 
-api.getUserInfo()
-  .then((info) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+
+  .then(([info, cards]) => {
     const infoAdapted = userInfo.adaptFromServer(info)
     userInfo.setUserInfo(infoAdapted)
     userInfo.setUserAvatar(infoAdapted.avatar)
     currnet_user = info;
-  })
-
-api.getInitialCards()
-  .then((cards) => {
     section.renderItems(cards)
   })
+  .catch(err => {
+console.log(err)  });
+
+
+
+// api.getUserInfo()
+//   .then((info) => {
+//     const infoAdapted = userInfo.adaptFromServer(info)
+//     userInfo.setUserInfo(infoAdapted)
+//     userInfo.setUserAvatar(infoAdapted.avatar)
+//     currnet_user = info;
+//   })
+
+// api.getInitialCards()
+//   .then((cards) => {
+//     section.renderItems(cards)
+//   })
 
 const popupWithFormProfile = new PopupWithForm('.popup_edit-profil', (data) => {
   popupWithFormProfile.loadingButton(true)
   userInfo.setUserInfo(data);
   api.editUserInfo(data.name, data.occupation)
-  popupWithFormProfile.loadingButton(false)
+  .then(()=>{
+    popupWithFormProfile.close()
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  .finally(() => {
+    popupEditAvatar.loadingButton(false);
+  })
 })
 
 popupWithFormProfile.setEventListeners()
@@ -103,12 +129,18 @@ editProfile.addEventListener('click', () => {
 
 const popupWithFormAdd = new PopupWithForm('.popup_add', (item) => {
   popupWithFormAdd.loadingButton(true);
-  api.editPhoto(item.name, item.link).then((itemServer) => {
-    const card = createCard(itemServer);
-    section.addItem(card);
-  })
-
-  popupWithFormAdd.loadingButton(false);
+  api.editPhoto(item.name, item.link)
+    .then((itemServer) => {
+      const card = createCard(itemServer);
+      section.addItem(card);
+      popupWithFormAdd.close()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupEditAvatar.loadingButton(false);
+    })
 
 })
 
@@ -116,9 +148,18 @@ popupWithFormAdd.setEventListeners()
 
 const popupEditAvatar = new PopupWithForm('.popup_avatar', (data) => {
   popupEditAvatar.loadingButton(true);
-  userInfo.setUserAvatar(data.link);
-  api.editUserAva(data.link);
-  popupEditAvatar.loadingButton(false);
+  api.editUserAva(data.link)
+    .then((data) => {
+      console.log(data);
+      userInfo.setUserAvatar(data.avatar)
+      popupEditAvatar.close()
+    })
+    .catch((err) => {
+    })
+    .finally(() => {
+      popupEditAvatar.loadingButton(false);
+    })
+
 })
 popupEditAvatar.setEventListeners();
 
