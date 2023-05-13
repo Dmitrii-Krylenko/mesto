@@ -14,7 +14,7 @@ const addPopup = document.querySelector('.popup_add');
 const editAvatar = document.querySelector('.profile__button')
 const saveAvatar = document.querySelector('.popup_avatar')
 
-let currnet_user = null;
+let currnetUser = null;
 
 const nameValue = document.querySelector('.popup__input_inter_name');
 const occupationValue = document.querySelector('.popup__input_inter_occupation');
@@ -48,7 +48,7 @@ const createCard = (item) => {
     popupWithImage.open(name, link)
   }, (cardElement) => {
     popupWithConfirmation.open(item._id, cardElement)
-  }, currnet_user._id, (like_id) => {
+  }, currnetUser._id, (like_id) => {
     return api.setLike(like_id)
   }, (like_id) => {
     return api.deleteLike(like_id)
@@ -81,40 +81,26 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     const infoAdapted = userInfo.adaptFromServer(info)
     userInfo.setUserInfo(infoAdapted)
     userInfo.setUserAvatar(infoAdapted.avatar)
-    currnet_user = info;
+    currnetUser = info;
     section.renderItems(cards)
   })
   .catch(err => {
-console.log(err)  });
-
-
-
-// api.getUserInfo()
-//   .then((info) => {
-//     const infoAdapted = userInfo.adaptFromServer(info)
-//     userInfo.setUserInfo(infoAdapted)
-//     userInfo.setUserAvatar(infoAdapted.avatar)
-//     currnet_user = info;
-//   })
-
-// api.getInitialCards()
-//   .then((cards) => {
-//     section.renderItems(cards)
-//   })
+    console.log(err)
+  });
 
 const popupWithFormProfile = new PopupWithForm('.popup_edit-profil', (data) => {
   popupWithFormProfile.loadingButton(true)
-  userInfo.setUserInfo(data);
   api.editUserInfo(data.name, data.occupation)
-  .then(()=>{
-    popupWithFormProfile.close()
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-  .finally(() => {
-    popupEditAvatar.loadingButton(false);
-  })
+    .then(() => {
+      userInfo.setUserInfo(data);
+      popupWithFormProfile.close()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupWithFormProfile.loadingButton(false);
+    })
 })
 
 popupWithFormProfile.setEventListeners()
@@ -139,7 +125,7 @@ const popupWithFormAdd = new PopupWithForm('.popup_add', (item) => {
       console.log(err)
     })
     .finally(() => {
-      popupEditAvatar.loadingButton(false);
+      popupWithFormAdd.loadingButton(false);
     })
 
 })
